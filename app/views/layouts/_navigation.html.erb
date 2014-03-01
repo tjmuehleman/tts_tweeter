@@ -14,17 +14,20 @@
       <% end %>
     </div>
     <div class="nav pull-right">
-
-      <% if !user_signed_in? %>
+      <% if !user_signed_in?  %>
+        <% if controller.controller_name != "registrations" %>
         <%= form_for(:user, :url => session_path(:user), :html => {:class=>"navbar-form form-inline pull-right"}) do |f| %>
           <%= f.text_field :email, :class =>"form-control" %>
           <%= f.password_field :password, :class =>"form-control"  %>
           <%= f.submit 'Sign in', :class => "btn btn-primary" %>
+          <% end %>
         <% end %>
        
 
       <% else %>
       <%= link_to "Sign out",destroy_user_session_path, method: :delete, class: "navbar-brand" %>
+      <%= image_tag(current_user.photo_url) %>
+     
       <% end %>
     </div>  
   

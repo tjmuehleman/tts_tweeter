@@ -1,11 +1,18 @@
 Tweeter::Application.routes.draw do
 
+  get "users/show"
+  get "users/index"
+
+  resources :comments
+
+  resources :tweets
+
   root "welcome#index"
 
   get "welcome/index"
   get "welcome/about"
   get "welcome/contact"
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => "registrations" }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

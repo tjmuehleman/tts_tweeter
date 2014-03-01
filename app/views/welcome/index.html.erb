@@ -1,2 +1,8 @@
-<h1>Welcome#index</h1>
+<h1>Let's Make Tweeeeeeetz</h1>
 <p>Find me in app/views/welcome/index.html.erb</p>
+
+
+<%if user_signed_in? %>
+You're logged in! What are you waiting for? <%=link_to "Add a new tweet now", new_tweet_path %>
+<%end%>
+
