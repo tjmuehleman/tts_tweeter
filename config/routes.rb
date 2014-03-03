@@ -2,6 +2,7 @@ Tweeter::Application.routes.draw do
 
   get "users/show"
   get "users/index"
+  get "comments/recent"
 
   resources :comments
 

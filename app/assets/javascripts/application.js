@@ -15,3 +15,22 @@
 //= require turbolinks
 //= require bootstrap
 //= require_tree .
+function loadComments(){
+
+$.getJSON( "/comments.json", function( data ) {
+
+	var string_html;
+
+	$.each(data, function(i, item){
+		//console.log(data[i]);
+		//console.log(data[i].comment_text);
+		
+		if (data[i].comment_text != ''){
+			string_html += data[i].comment_text + '<br>';
+		}
+		
+	});
+
+	$('#comments').html(string_html)
+});
+}
