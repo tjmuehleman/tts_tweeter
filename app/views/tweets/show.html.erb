@@ -6,8 +6,33 @@
 </p>
 
 <%if @num_comments != 0%>
-	we have comments! loop through them!
+<!-- come in and clean this up! -->
+<table>
+  <thead>
+    <tr>
+      <th>Tweet</th>
+      <th>User</th>
+      <th>Comment text</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td><%= comment.tweet_id %></td>
+        <td><%= comment.user_id %></td>
+        <td><%= comment.comment_text %></td>
+        <td><%= link_to 'Show', comment %></td>
+        <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
+        <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 <%else%>
 	no comments. bummer.
-	<%= link_to "Add a comment", new_comment_path %>
+	<%= link_to "Add a comment", new_comment_path(:tweet_id=>@tweet.id) %>
 <%end%>

@@ -1,6 +1,8 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
+
+  include TweetsHelper
   # GET /comments
   # GET /comments.json
   def index
@@ -32,8 +34,10 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
 
-    @comment.tweet_id = params["tweet_id"]
     @comment.user_id = current_user.id
+
+    # update the number of comments for this tweet
+    set_num_comments (params[:tweet_id])
 
     respond_to do |format|
       if @comment.save
