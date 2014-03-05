@@ -34,3 +34,11 @@ $.getJSON( "/comments.json", function( data ) {
 	$('#comments').html(string_html)
 });
 }
+
+function convertSeconds(num_seconds){
+	//1342709595000
+	//1393891200
+	var date = new Date(num_seconds * 1000);
+	alert(date);
+}
+

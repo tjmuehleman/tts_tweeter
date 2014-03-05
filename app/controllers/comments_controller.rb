@@ -18,6 +18,9 @@ class CommentsController < ApplicationController
   # GET /comments/new
   def new
     @comment = Comment.new
+
+    @tweet_id = params["tweet_id"]
+    @tweet = Tweet.find(@tweet_id)
   end
 
   # GET /comments/1/edit
@@ -29,7 +32,8 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
 
-    @current_user_first_name = current_user.first_name
+    @comment.tweet_id = params["tweet_id"]
+    @comment.user_id = current_user.id
 
     respond_to do |format|
       if @comment.save

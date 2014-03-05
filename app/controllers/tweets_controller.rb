@@ -10,6 +10,9 @@ class TweetsController < ApplicationController
   # GET /tweets/1
   # GET /tweets/1.json
   def show
+    # get all the comments for this tweet
+    @comments = @tweet.comments
+    @num_comments = @comments.count
   end
 
   # GET /tweets/new

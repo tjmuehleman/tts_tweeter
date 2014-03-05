@@ -6,7 +6,7 @@
   <form accept-charset="UTF-8" action="/comments" class="new_comment" data-remote="true" id="new_comment" method="post">
 
   -->
-<%= form_for(@comment, remote: true) do |f| %>
+<%= form_for(@comment) do |f| %>
   <% if @comment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
@@ -20,15 +20,10 @@
   <% end %>
 
 <div id="response_message"></div>
-
-  <div class="field">
-    <%= f.label :tweet_id %><br>
-    <%= f.number_field :tweet_id %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
-  </div>
+  Add a comment to this tweet:
+  <blockquote>
+    <%=@tweet.tweet%>
+  </blockquote>
   <div class="field">
     <%= f.label :comment_text %><br>
     <%= f.text_area :comment_text %>
